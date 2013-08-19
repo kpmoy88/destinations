@@ -1,0 +1,125 @@
+/*CSS for adding new Location page */
+div #locationAdd{
+	width:60%;
+	background-color:#EEEEEE;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+div #locationAdd div textarea {
+	width: 406px;
+	min-width: 406px;
+	max-width: 406px;
+}
+
+div #errorList{
+	margin-left: 20px;
+}
+
+
+/*CSS for viewing a Location page */
+div #locationHeader {
+	padding-left: 15px;
+}
+
+div #locationImage {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div #locationImage img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*CSS for Edit Link */
+div #editLocationInfo{
+	float: right;
+}
+
+/*CSS for Photo section in Gallery tab */
+div #photoGallery{
+	border-style: ridge;
+	border-radius: 15px;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+/*CSS for Photo submission section in Gallery tab */
+div #submitPhoto{
+	border-style: ridge;
+	border-radius: 15px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+/*CSS for visited and bookmark buttons */
+div #buttonLists {
+	margin-right: 20px;
+}
+
+div #buttonLists input{
+	float: right;
+}
+
+/*CSS for Comments section in Comment tab */
+div #comment {
+	border-style: ridge;
+	border-radius: 15px;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+/*CSS for Edit and Delete links for a comment in Comments tab */
+div #comment a{
+	float: right;
+	margin-top: 20px;
+	margin-right: 5px;
+}
+
+/*CSS for text of comment in Comments tab */
+p #commentBody{
+	text-align: left;
+}
+
+p #username{
+	text-align: right;
+}
+
+/*CSS for Commment submission section in Comment tab */
+div #submitComment {
+	padding-left: 20px;
+}
+
+div #submitComment fieldset textarea {
+	width: 406px;
+	min-width: 406px;
+	max-width: 406px;
+}
+
+/*CSS for editing page of a Location */
+div #locationEdit{
+	width:60%;
+	background-color:#EEEEEE;
+
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+label{
+	font-weight: bold;
+}
+
+div #locationEdit div textarea {
+	width: 406px;
+	min-width: 406px;
+	max-width: 406px;
+}

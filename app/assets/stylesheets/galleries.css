@@ -1,0 +1,19 @@
+/*CSS for Galleries photo page */
+div #displayPhoto{
+	width:80%;
+	background-color:#EEEEEE;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+/*CSS for Delete link on photo page */
+div #displayPhoto a{
+	float: right;
+}
+
+/*CSS for Return to location link on photo page */
+div #returnLink a{
+	float:right;
+}

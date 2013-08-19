@@ -1,0 +1,121 @@
+<%= stylesheet_link_tag "profile" %>
+<div id="profile">
+	<section class="well">
+		
+		<% if user_signed_in? && (current_user.id == @user.id) %>
+			<div id="editProfile">
+				<%= link_to "Edit Profile", edit_profile_path(@profile.id) %>
+			</div>
+		<% end %>
+
+		<div id="profileHeader">
+			<% if @profile.avatar.exists?%>
+				<%= image_tag @profile.avatar.url (:thumb) %>
+			<% end %>
+			<h2><%=@user.username%></h2>
+		</div>
+		
+		<!--Gem that allows tabs -->
+		<%= bettertabs :simpletabs do |tab| %>
+
+			<%= tab.link :tab1, 'Info' do %>
+				<div><strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %></div>
+				<div><strong>City: </strong><%= @profile.city %> </div>
+				<div><strong>State: </strong><%= @profile.state %></div>
+				<div><strong>Bio: </strong><%= @profile.bio %></div>
+			<% end %>
+
+			<%= tab.link :tab2, 'Posted Locations' do %>
+				<% if @locations.empty? %>
+  					<strong>User has not posted any locations.</strong>
+  				<% else %>
+    				<table class="table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>City</th>
+								<th>State</th>
+								<th>Posted on</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @locations.each do |location| %>
+							<tr>
+								<td><%= link_to location.title, location %></td>
+								<td><%= location.city %></td>
+								<td><%= location.state %></td>
+								<td><%= location.date_posted %></td>
+							</tr>
+							<% end %>
+						<tbody>
+					</table>
+				<% end %>
+  			<% end %> <!--tab2 -->
+
+  			<%= tab.link :tab3, 'Visited' do %>
+  				<% if @visited.empty? %>
+  					<strong>No locations have been added.</strong>
+  				<% else %>
+    				<table class="table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>City</th>
+								<th>State</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @visited.each do |visit_location| %>
+							<tr>
+								<td><%= link_to Location.find(visit_location.location_id).title, location_path( visit_location.location_id) %></td>
+								<td><%= Location.find(visit_location.location_id).city %></td>
+								<td><%= Location.find(visit_location.location_id).state %></td>
+								<td><% if user_signed_in? && (current_user.id == @user.id) %>
+									<%= form_tag nil, :method => 'get' do%>
+										<%= submit_tag "Remove", :name=> "visited"%>
+										<%= hidden_field_tag 'location_id', visit_location.location_id %>
+									<% end %>
+								<% end %>
+								</td>
+							</tr>
+							<% end %>
+						<tbody>
+					</table>
+				<% end %><!--if @visite.empty? -->
+  			<% end %> <!--tab3 -->
+
+  			<%= tab.link :tab4, 'Bookmark' do %>
+  				<% if @bookmarks.empty? %>
+  					<strong>No locations have been added.</strong>
+  				<% else %>
+    				<table class="table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>City</th>
+								<th>State</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @bookmarks.each do |saved_location| %>
+							<tr>
+								<td><%= link_to Location.find(saved_location.location_id).title, location_path( saved_location.location_id) %></td>
+								<td><%= Location.find(saved_location.location_id).city %></td>
+								<td><%= Location.find(saved_location.location_id).state %></td>
+								<td><% if user_signed_in? && (current_user.id == @user.id) %>
+									<%= form_tag nil, :method => 'get' do%>
+										<%= submit_tag "Remove", :name=> "bookmark"%>
+										<%= hidden_field_tag 'location_id', saved_location.location_id %>
+									<% end %>
+								<% end %>
+								</td>
+							</tr>
+							<% end %>
+						<tbody>
+					</table>
+				<% end %><!--if @visite.empty? -->
+  			<% end %> <!--tab4 -->
+
+		<% end %> <!--bettertabs -->
+	</section>
+</div>

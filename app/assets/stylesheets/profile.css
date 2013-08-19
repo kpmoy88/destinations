@@ -1,0 +1,59 @@
+/*CSS for Profile page */
+div #profile{
+	width:80%;
+	background-color:#EEEEEE;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+div #profileHeader{
+	padding-left: 20px;
+}
+
+/*Edit link to look like button */
+div #editProfile a {
+	float: right;
+    background:#eee;
+    text-decoration:none;
+    color:#333;
+    font-family:Arial, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    padding:5px 5px;
+    border:1px solid #aaa;
+    border-radius:3px;
+    cursor:default;
+}
+
+div #editProfile a:hover {
+    background-color:#f2f2f2;
+    border-color:#888;
+    box-shadow:0 0 2px #ccc;
+}
+
+div #editProfile a:active {
+    vertical-align:-1px;
+}
+
+/*CSS for Profile edit page */
+div #profileEdit{
+	width:30%;
+	background-color:#EEEEEE;
+
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+label{
+	font-weight: bold;
+}
+
+div #profileEdit div textarea {
+	width: 206px;
+	min-width: 206px;
+	max-width: 206px;
+}

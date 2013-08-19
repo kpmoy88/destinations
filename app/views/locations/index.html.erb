@@ -1,0 +1,44 @@
+<div class="span9">
+	<section class="well">
+	<h2>Destination Suggestions</h2>
+	</br>
+
+	<%= form_tag locations_path, :method => 'get' do%>
+		<p>
+			<strong>Search for<strong>
+			<%= text_field_tag :search, params[:search] %>
+			<strong>in<strong>
+			<%= select_tag(:search_by,options_for_select(Location::SEARCH_BY),:include_blank => true)%>
+			<%= submit_tag "Search", :name=> nil %>
+		</p>
+	<% end %>
+
+	<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Photo</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Posted by</th>
+					<th>Posted on</th>
+				</tr>
+			</thead>
+		<tbody>
+		<% @locations.each do |location| %>
+
+			<tr>
+				<td><%= link_to location.title, location %></td>
+				<td><%= image_tag(location.image.url(:thumb)) %></td>
+				<td><%= link_to location.city, locations_path(:search =>location.state,:search_by => 'city') %></td>
+				<td><%= link_to location.state, locations_path(:search =>location.state,:search_by => 'state') %></td>
+				<td><%= link_to User.find(location.user_id).username, profile_path(location.user_id) %></td>
+				<td><%= location.date_posted %></td>
+			</tr>
+
+		<% end %>
+		<tbody>
+	</table>
+
+	</section>
+<div>

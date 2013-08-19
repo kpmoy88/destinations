@@ -1,0 +1,136 @@
+<%= stylesheet_link_tag "location" %>
+<div class="span9">
+	<section class="well">
+
+    <% if user_signed_in? %>
+      <div id="editLocationInfo">
+        <%= link_to "Edit", edit_location_path(@location.id) %>
+      </div>
+    <% end %>
+
+    <div id="locationHeader" >
+      <h2><%= @location.title %></h2>
+      <h4>Posted by <%= link_to @posted_user.username, profile_path(@posted_user) %>
+      </h4>
+    </div>
+
+    <div id="locationImage">
+      <% if @location.image.exists?%>
+        <%= image_tag @location.image.url (:medium) %>
+      <% end %>
+    </div>
+
+    </br>
+    
+    <% if user_signed_in? %>
+      <div id="buttonLists">
+      <%= form_tag nil, :method => 'get' do%>
+        <!--Shows Visited button until user has clicked on it -->
+        <% if Visited.where(:user_id => current_user.id, :location_id => @location.id).empty? %>
+          <%= submit_tag "Visited", :name=> "visited" %>
+        <% end %>
+        <!--Shows Bookmark button until user has clicked on it -->
+        <% if Bookmark.where(:user_id => current_user.id, :location_id => @location.id).empty? %>
+          <%= submit_tag "Bookmark", :name=> "bookmark" %>
+        <% end %>
+      <% end %>
+      </div>
+    <%end%>
+
+    <!--Gem that allows tabs -->
+    <%= bettertabs :simpletabs do |tab| %>
+
+		  <%= tab.link :tab1, 'Info' do %>
+        <strong>Address</strong></br>
+        <address>
+          <%= @location.address %></br>
+				  <%= @location.city %>, <%= @location.state %></br>
+        </address>
+
+        <strong>Description</strong></br>
+        <%= @location.description %>
+  		<% end %>
+
+  		<%= tab.link :tab2, 'Image Gallery' do %>
+
+        <div id="photoGallery">
+          <% unless @photo_gallery.empty? %>
+          
+            <% @photo_gallery.each do |image| %>
+              <%= link_to image_tag(image.photo.url(:thumb)),location_gallery_path(@location,image) %>
+            <% end %>
+          
+          <% else %>
+            <strong>No Images Available<strong>
+          <% end %>
+        </div>
+
+        </br>
+        <% if user_signed_in? %>
+          
+          <div id="submitPhoto" class="form-group">
+            <h5>Add Photo</h5>
+            <%= form_for [@location,@gallery], :html => { :multipart => true } do |f| %>
+              <fieldset>
+                <div class="fields">
+                  <%= f.label :title %>
+                  <%= f.text_field :title %>
+                </div>
+                <div class="fields">
+                  <%= f.label :photo %>
+                  <%= f.file_field :photo %>
+                </div>
+                </br>
+                <%= f.submit "Submit" %>
+              </fieldset>
+            <% end %>
+          </div><!--submitPhoto -->
+        <% end %><!--user_sign_in? -->
+
+  		<% end %><!--tab2 -->
+
+  		<%= tab.link :tab3, 'Comments' do %>
+        <% unless @comments.empty? %>
+          <% @comments.each do |comment| %>
+  				  <div id="comment">
+  				    <p id="commentBody">
+                  <%= comment.comment %>
+  				    </p>
+
+              <% if user_signed_in? && (current_user.id == comment.user_id) %>
+                <%= link_to "Edit", edit_location_comment_path(@location,comment)  %>
+                <%= link_to "Delete", [@location,comment], method: :delete,data: {confirm: 'Are you sure?'}%>
+              <% end %> 
+
+  				    <p id="username">
+                Posted by <strong><%= User.find(comment.user_id).username %></strong> on <%= comment.created_at.to_formatted_s(:db)%>
+  				    </p>
+              
+            </div>
+          <% end %><!--@comments loop -->
+        <% else %>
+          <div id="comment">
+            <strong><p id="commentBody">No Comments Available</p></strong>
+          </div>
+        <% end %>
+
+  		  </br>
+        <!--Only allow signed in users to comment -->
+        <% if user_signed_in? %>
+          <div id="submitComment" >
+            <strong>Post a comment</strong>
+    		    <%= form_for [@location, @comment] do |f| %>
+    		      <fieldset>
+                <%= f.text_area :comment %>
+                <%= f.submit "Submit" %>
+              </fieldset>
+    		    <% end %> <!--form_for comment -->
+          </div>
+        <% end %> <!--User_signed_? -->
+
+  		<% end %> <!--tab3 -->
+
+    <% end %> <!--bettertabs -->
+    
+	</section>
+</div>

@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag "location" %>
+<div id="locationAdd">
+  <section class="well">
+    <h2>Add New Location</h2>
+    <div id="errorList">
+      <% @location.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+      <%end%>
+    </div>
+    </br>
+    <%= form_for @location do |f| %>
+      <fieldset>
+        <div class="fields">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="fields">
+          <%= f.label :address %>
+          <%= f.text_field :address %>
+        </div>
+        <div class="fields">
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </div>
+        <div class="fields">
+          <%= f.label :state %>
+          <%= f.collection_select :state, Location::STATES, :to_s, :to_s, :include_blank => true %>
+        </div>
+        <div class="fields">
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </div>
+        <div class="fields">
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+        </div>
+        </br>
+        <%= f.submit "Submit" %>
+      </fieldset>
+    <% end %>
+    
+  </section>
+</div>

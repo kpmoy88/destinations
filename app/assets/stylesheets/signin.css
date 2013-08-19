@@ -1,0 +1,13 @@
+/*CSS for Devise Sign In page */
+div #signin{
+	width:30%;
+	background-color:#EEEEEE;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+label{
+	font-weight: bold;
+}

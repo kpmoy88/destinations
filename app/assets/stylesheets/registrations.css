@@ -1,0 +1,13 @@
+/*CSS for Devise Sign Up page */
+div #signup{
+	width:40%;
+	background-color:#EEEEEE;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:justify;
+	padding:50px 50px 50px 50px; 
+}
+
+label{
+	font-weight: bold;
+}

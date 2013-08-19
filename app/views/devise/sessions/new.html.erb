@@ -1,0 +1,28 @@
+
+<%= stylesheet_link_tag "signin" %>
+<div id="signin">
+  <section class="well">
+    <h2>Sign in</h2>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+      <div><%= f.label :username %>
+      <%= f.text_field :username, :autofocus => true %></div>
+
+      <div><%= f.label :password %>
+      <%= f.password_field :password %></div>
+      </br>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="checkbox">
+    	   <label>Remember Me<input type="checkbox" value="">
+    	   </label>
+        </div>
+      <% end -%>
+
+      <div><%= f.submit "Sign in" %></div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </section>
+</div>

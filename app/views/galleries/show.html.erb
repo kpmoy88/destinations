@@ -1,0 +1,15 @@
+<%= stylesheet_link_tag "galleries" %>
+<div id="displayPhoto">
+	<section class="well">
+    	<% if user_signed_in? && (current_user.id == @photo.user_id) %>
+        	<%= link_to "Delete", [@location,@photo], method: :delete,data: {confirm: 'Are you sure?'}%>
+      	<% end %>
+      
+    	<h2><%= @photo.title %></h2>
+    	<%= image_tag @photo.photo.url (:original) %>
+
+    	<div id="returnLink">
+			<%= link_to 'Return to '+ @location.title,location_path(@location,:simpletabs_selected_tab => 'tab2')%>
+		</div>
+	</section>
+</div>
