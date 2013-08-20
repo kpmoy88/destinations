@@ -1,5 +1,5 @@
 /*CSS for Edit page for a Comment */
-div.commentEdit{
+div #commentEdit{
 	width:60%;
 	background-color:#EEEEEE;
 
@@ -13,7 +13,7 @@ label{
 	font-weight: bold;
 }
 
-div.commentEdit div textarea {
+div #commentEdit div textarea {
 	width: 406px;
 	min-width: 406px;
 	max-width: 406px;
