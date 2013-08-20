@@ -37,9 +37,9 @@ class Location < ActiveRecord::Base
 	#Also on index shows last 20 posts
 	def self.search(search,search_by)
 		if search && search_by != ""
-			Location.where(search_by + " LIKE ?","%#{search}%")
+			Location.where(search_by + " ILIKE ?","%#{search}%")
 		elsif search
-			Location.where('title LIKE :search',{:search => "%#{search}%"})
+			Location.where('title ILIKE :search',{:search => "%#{search}%"})
 		else
 			Location.limit(20).order('id desc')
 		end 
