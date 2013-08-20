@@ -30,7 +30,6 @@ end
 gem 'devise', '~> 3.0.0'
 
 #Set up navigation bar and css for website
-gem 'therubyracer',platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
@@ -54,6 +53,10 @@ end
 group :production do
 	gem 'pg'
 	gem 'aws-sdk'
+end
+
+group :assets do
+	gem 'therubyracer',platforms: => :ruby
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
